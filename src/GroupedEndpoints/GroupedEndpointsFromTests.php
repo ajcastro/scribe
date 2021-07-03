@@ -18,16 +18,6 @@ class GroupedEndpointsFromTests extends GroupedEndpointsAbstract implements Grou
 
     protected function extractEndpointsInfoAndWriteToDisk(): array
     {
-        $latestEndpointsData = [];
-        $cachedEndpoints = [];
-        $groups = [];
-
-        if ($this->preserveUserChanges && is_dir(static::$camelDir) && is_dir(static::$cacheDir)) {
-            $latestEndpointsData = Camel::loadEndpointsToFlatPrimitivesArray(static::$camelDir);
-            $cachedEndpoints = Camel::loadEndpointsToFlatPrimitivesArray(static::$cacheDir, true);
-            $groups = Camel::loadEndpointsIntoGroups(static::$camelDir);
-        }
-
         $endpoints = $this->extractEndpointsInfoFromTests();
         $groupedEndpoints = Camel::groupEndpoints($endpoints, $this->endpointGroupIndexes);
         $this->writeEndpointsToDisk($groupedEndpoints);
