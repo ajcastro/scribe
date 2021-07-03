@@ -14,16 +14,14 @@ abstract class GroupedEndpointsAbstract
 {
     protected GenerateDocumentation $command;
     protected DocumentationConfig $docConfig;
-    protected bool $preserveUserChanges;
 
     public static string $camelDir;
     public static string $cacheDir;
 
-    public function __construct(GenerateDocumentation $command, bool $preserveUserChanges)
+    public function __construct(GenerateDocumentation $command)
     {
         $this->command = $command;
         $this->docConfig = $command->getDocConfig();
-        $this->preserveUserChanges = $preserveUserChanges;
 
         static::$camelDir = GenerateDocumentation::$camelDir;
         static::$cacheDir = GenerateDocumentation::$cacheDir;
