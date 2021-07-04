@@ -18,12 +18,6 @@ class GroupedEndpointsFactory
             return new GroupedEndpointsFromTests($command);
         }
 
-        if ($command->isForcing()) {
-            return new GroupedEndpointsFromApp($command, $routeMatcher, false);
-        }
-
-        if ($command->shouldExtract()) {
-            return new GroupedEndpointsFromApp($command, $routeMatcher, true);
-        }
+        return new GroupedEndpointsFromApp($command, $routeMatcher, !$command->isForcing());
     }
 }
