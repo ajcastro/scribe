@@ -106,7 +106,7 @@ class RouteMatcher implements RouteMatcherInterface
             || Str::is($excludes, $route->uri());
     }
 
-    public function isMatchedFromTests(Route $route): bool
+    private function isMatchedFromTests(Route $route): bool
     {
         if ($this->matchFromTestsOnly == false) {
             return true;
