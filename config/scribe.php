@@ -187,6 +187,13 @@ return [
         'base_url' => null,
     ],
 
+    'from_tests' => [
+        /**
+         * Generate api documentation by running phpunit tests following "Test-Driven Documentation" principle.
+         */
+        'enabled' => false,
+    ],
+
     /*
      * How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
      */

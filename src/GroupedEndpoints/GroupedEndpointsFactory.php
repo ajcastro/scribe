@@ -10,14 +10,14 @@ class GroupedEndpointsFactory
 {
     public static function make(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher): GroupedEndpointsContract
     {
-        if ($command->isForcing()) {
-            return new GroupedEndpointsFromApp($command, $routeMatcher, false);
+        if ($command->option('no-extraction')) {
+            return new GroupedEndpointsFromCamelDir;
         }
 
-        if ($command->shouldExtract()) {
-            return new GroupedEndpointsFromApp($command, $routeMatcher, true);
+        if ($command->getDocConfig()->get('from_tests.enabled')) {
+            return new GroupedEndpointsFromTests($command, $routeMatcher);
         }
 
-        return new GroupedEndpointsFromCamelDir;
+        return new GroupedEndpointsFromApp($command, $routeMatcher, !$command->isForcing());
     }
 }
