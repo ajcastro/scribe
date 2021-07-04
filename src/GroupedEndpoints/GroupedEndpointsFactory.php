@@ -15,7 +15,7 @@ class GroupedEndpointsFactory
         }
 
         if ($command->getDocConfig()->get('from_tests.enabled')) {
-            return new GroupedEndpointsFromTests($command);
+            return new GroupedEndpointsFromTests($command, $routeMatcher);
         }
 
         return new GroupedEndpointsFromApp($command, $routeMatcher, !$command->isForcing());

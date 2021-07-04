@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Knuckles\Camel\Camel;
 use Knuckles\Scribe\Commands\GenerateDocumentation;
 use Knuckles\Scribe\Extracting\ApiDetails;
+use Knuckles\Scribe\Matching\RouteMatcherInterface;
 use Knuckles\Scribe\Tools\DocumentationConfig;
 use Knuckles\Scribe\Tools\Utils;
 use Symfony\Component\Yaml\Yaml;
@@ -13,14 +14,16 @@ use Symfony\Component\Yaml\Yaml;
 abstract class GroupedEndpointsAbstract
 {
     protected GenerateDocumentation $command;
+    protected RouteMatcherInterface $routeMatcher;
     protected DocumentationConfig $docConfig;
 
     public static string $camelDir;
     public static string $cacheDir;
 
-    public function __construct(GenerateDocumentation $command)
+    public function __construct(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher)
     {
         $this->command = $command;
+        $this->routeMatcher = $routeMatcher;
         $this->docConfig = $command->getDocConfig();
 
         static::$camelDir = GenerateDocumentation::$camelDir;

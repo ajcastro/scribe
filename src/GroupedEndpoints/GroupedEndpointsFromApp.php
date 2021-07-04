@@ -23,16 +23,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class GroupedEndpointsFromApp extends GroupedEndpointsAbstract implements GroupedEndpointsContract
 {
-    private $routeMatcher;
     private bool $preserveUserChanges;
     private bool $encounteredErrors = false;
     private array $endpointGroupIndexes = [];
 
     public function __construct(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher, bool $preserveUserChanges)
     {
-        parent::__construct($command);
+        parent::__construct($command, $routeMatcher);
 
-        $this->routeMatcher = $routeMatcher;
         $this->preserveUserChanges = $preserveUserChanges;
     }
 
