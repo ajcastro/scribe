@@ -10,6 +10,10 @@ class GroupedEndpointsFactory
 {
     public static function make(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher): GroupedEndpointsContract
     {
+        if ($command->getDocConfig()->get('from_tests.enabled')) {
+            return new GroupedEndpointsFromTests($command);
+        }
+
         if ($command->isForcing()) {
             return new GroupedEndpointsFromApp($command, $routeMatcher, false);
         }
