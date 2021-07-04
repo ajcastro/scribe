@@ -27,10 +27,7 @@ class GroupedEndpointsFromTests extends GroupedEndpointsAbstract implements Grou
 
     private function extractEndpointsInfoFromTests(): array
     {
-        // TODO: Implement:
-        // First, run the phpunit tests to extract the $groupedEndpoints
-        // and write them to the yaml files just like when we write them when we extracted them from Laravel app.
-        // Then return the $groupedEndpoints.
+        // TODO: Run the phpunit tests to extract and return the endpoints.
         return [];
     }
 }
