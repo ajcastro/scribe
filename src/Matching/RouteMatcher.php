@@ -9,6 +9,15 @@ use Illuminate\Support\Str;
 
 class RouteMatcher implements RouteMatcherInterface
 {
+    private bool $matchFromTestsOnly = false;
+
+    public function matchFromTestsOnly(bool $bool = true): self
+    {
+        $this->matchFromTestsOnly = $bool;
+
+        return $this;
+    }
+
     public function getRoutes(array $routeRules = [], string $router = 'laravel'): array
     {
         $usingDingoRouter = strtolower($router) == 'dingo';
@@ -34,7 +43,10 @@ class RouteMatcher implements RouteMatcherInterface
                     continue;
                 }
 
-                if ($this->shouldIncludeRoute($route, $routeRule, $includes, $usingDingoRouter)) {
+                if (
+                    $this->shouldIncludeRoute($route, $routeRule, $includes, $usingDingoRouter)
+                    && $this->isMatchedFromTests($route)
+                ) {
                     $matchedRoutes[] = new MatchedRoute($route, $routeRule['apply'] ?? []);
                 }
             }
@@ -92,5 +104,16 @@ class RouteMatcher implements RouteMatcherInterface
 
         return Str::is($excludes, $route->getName())
             || Str::is($excludes, $route->uri());
+    }
+
+    public function isMatchedFromTests(Route $route): bool
+    {
+        if ($this->matchFromTestsOnly == false) {
+            return true;
+        }
+
+        // TODO: Run phpunit tests first to list all the routes that are included
+        // and check if route is included from tests
+        return true;
     }
 }

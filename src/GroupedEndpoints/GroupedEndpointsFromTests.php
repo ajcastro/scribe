@@ -18,16 +18,17 @@ class GroupedEndpointsFromTests extends GroupedEndpointsAbstract implements Grou
 
     protected function extractEndpointsInfoAndWriteToDisk(): array
     {
-        $endpoints = $this->extractEndpointsInfoFromTests();
+        $routes = $this->routeMatcher->matchFromTestsOnly()->getRoutes($this->docConfig->get('routes'), $this->docConfig->get('router'));
+        $endpoints = $this->extractEndpointsInfoFromTests($routes);
         $groupedEndpoints = Camel::groupEndpoints($endpoints, $this->endpointGroupIndexes);
         $this->writeEndpointsToDisk($groupedEndpoints);
         $groupedEndpoints = Camel::prepareGroupedEndpointsForOutput($groupedEndpoints);
         return $groupedEndpoints;
     }
 
-    private function extractEndpointsInfoFromTests(): array
+    private function extractEndpointsInfoFromTests(array $routes): array
     {
-        // TODO: Run the phpunit tests to extract and return the endpoints.
+        // TODO: code
         return [];
     }
 }
