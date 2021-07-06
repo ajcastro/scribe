@@ -12,6 +12,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removals
 
+## 3.5.0 (Monday, 5 July 2021)
+### Modified
+- Get URL parameter name from field bindings (https://github.com/knuckleswtf/scribe/commit/ce6be7ca68ed0e682258eca5bbeb2f7d84774714)
+
+## 3.4.3 (Monday, 5 July 2021)
+### Modified
+- Internal change: switch to using strategies to get "grouped endpoints" (https://github.com/knuckleswtf/scribe/pull/263)
+
+## 3.4.2 (Monday, 5 July 2021)
+### Modified
+- Only use model key type for URL param type if it's the same as the route key name (https://github.com/knuckleswtf/scribe/pull/265)
+### Fixed
+- Merge user-defined endpoints correctly. (https://github.com/knuckleswtf/scribe/commit/b7f8539b1bd5cd4d97496fa93803a3d7894889f6)
+
+## 3.4.1 (Friday, 2 July 2021)
+### Fixed
+- Set nested file fields properly in Postman. (https://github.com/knuckleswtf/scribe/commit/39d53eac5db30c1d4b6b16cff836c1d3a3898f89)
+
 ## 3.4.0 (Thursday, 1 July 2021)
 ### Added
 - Support better examples based on the `where` clause in routes. (https://github.com/knuckleswtf/scribe/commit/cf2b53c16d405e655886b6225e9ebbf29a6621a8)

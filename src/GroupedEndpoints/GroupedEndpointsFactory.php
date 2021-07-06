@@ -8,7 +8,7 @@ use Knuckles\Scribe\Matching\RouteMatcherInterface;
 
 class GroupedEndpointsFactory
 {
-    public static function make(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher): GroupedEndpointsContract
+    public function make(GenerateDocumentation $command, RouteMatcherInterface $routeMatcher): GroupedEndpointsContract
     {
         if ($command->option('no-extraction')) {
             return new GroupedEndpointsFromCamelDir;
