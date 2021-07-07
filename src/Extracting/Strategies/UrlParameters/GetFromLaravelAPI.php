@@ -28,12 +28,8 @@ class GetFromLaravelAPI extends Strategy
             $optional = Str::endsWith($match, '?');
             $name = rtrim($match, '?');
 
-            // In case of /users/{user:id}, make the param {user}, but
-            $binding = null;
-            // Was added in Laravel 7.x
-            if (method_exists($endpointData->route, 'bindingFieldFor')) {
-                $binding = $endpointData->route->bindingFieldFor($name);
-            }
+            // In case of /users/{user:id}, make the param {user_id}
+            $binding = ExtractedEndpointData::getFieldBindingForUrlParam($endpointData->route, $name);
             $parameters[$name] = [
                 'name' => $name,
                 'description' => $this->inferUrlParamDescription($endpointData->uri, $binding ?: $name, $binding ? $name : null),
@@ -66,7 +62,11 @@ class GetFromLaravelAPI extends Strategy
                         continue;
                     }
 
-                    $type = $this->normalizeTypeName($argumentInstance->getKeyType());
+                    // If a user customized their routeKeyName,
+                    // we can't guarantee that it's the same type as the PK
+                    $typeName = $argumentInstance->getKeyName() === $argumentInstance->getRouteKeyName()
+                        ? $argumentInstance->getKeyType() : 'string';
+                    $type = $this->normalizeTypeName($typeName);
                     $parameters[$paramName]['type'] = $type;
 
                     // If the user explicitly set a `where()` constraint, use that to refine examples
