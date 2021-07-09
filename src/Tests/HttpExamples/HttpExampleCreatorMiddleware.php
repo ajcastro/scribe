@@ -1,6 +1,6 @@
 <?php
 
-namespace Knuckles\Scribe\HttpExamples;
+namespace Knuckles\Scribe\Tests\HttpExamples;
 
 use Closure;
 use Illuminate\Testing\TestResponse;
@@ -17,9 +17,6 @@ class HttpExampleCreatorMiddleware
 
         dump('pumasok');
         $response = $next($request);
-
-        dump($response->getContent());
-        sleep(2);
 
         // $this->httpExampleCreator->saveHttpResponseData($request, $response);
 

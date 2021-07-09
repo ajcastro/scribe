@@ -4,7 +4,7 @@ namespace Knuckles\Scribe;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Support\ServiceProvider;
-use Knuckles\Scribe\HttpExamples\HttpExampleCreatorMiddleware;
+use Knuckles\Scribe\Tests\HttpExamples\HttpExampleCreatorMiddleware;
 
 class ScribeTestServiceProvider extends ServiceProvider
 {
