@@ -21,6 +21,7 @@ class ScribeTestServiceProvider extends ServiceProvider
 
     private function registerMiddleware(): void
     {
-        $this->app[HttpKernel::class]->pushMiddleware(HttpExampleCreatorMiddleware::class);
+        $this->app[HttpKernel::class]->appendMiddlewareToGroup('web', HttpExampleCreatorMiddleware::class);
+        $this->app[HttpKernel::class]->appendMiddlewareToGroup('api', HttpExampleCreatorMiddleware::class);
     }
 }
