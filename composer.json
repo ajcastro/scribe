@@ -72,7 +72,8 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Knuckles\\Scribe\\ScribeServiceProvider"
+        "Knuckles\\Scribe\\ScribeServiceProvider",
+        "Knuckles\\Scribe\\ScribeTestServiceProvider"
       ]
     }
   },

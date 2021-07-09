@@ -53,6 +53,8 @@ class GetFromHeaderTag extends Strategy
 
         $methodDocBlock = RouteDocBlocker::getDocBlocksFromRoute($endpointData->route)['method'];
 
+        // dd($methodDocBlock);
+
         return $this->getHeadersFromDocBlock($methodDocBlock->getTags());
     }
 
